@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zining Zhu | 室内设计与空间研究作品集</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js CDN -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Google Fonts: 衬线与现代无衬线结合 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Noto Serif SC"', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Serif SC', sans-serif;
+        }
+        [x-cloak] { display: none !important; }
+    </style>
+</head>
+<body x-data="{ 
+    darkMode: false, 
+    activeFilter: 'all',
+    selectedProject: null,
+    projects: [
+        {
+            id: 1,
+            title: '光影诗学：微气候与环境心理学住宅',
+            category: 'interior',
+            summary: '基于环境心理学家 Jennifer Veitch 及 John E. Flynn 色温与昼夜节律研究，探讨住宅空间中光影、材质与精神庇护所的关系。',
+            tags: ['室内设计', '环境心理学', '光环境优化'],
+            image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+            details: '本案聚焦于都市高密度居住环境中的心理减压诉求。通过引入动态色温调节系统与半隐蔽式（Prospect-Refuge）布局，降低视觉与声学干扰。选用天然夯土涂料、再生亚麻与未封釉陶器，增强触觉与视觉的在地感，让居住者在秩序与偶然之间找到完美的平衡点。'
+        },
+        {
+            id: 2,
+            title: '山场与器度：武夷岩茶空间秩序研究',
+            category: 'research',
+            summary: '将传统茶道空间美学与现代空间逻辑结合，研究水质 TDS、温控曲线与茶席流线的时空交互关系。',
+            tags: ['空间研究', '茶空间设计', '传统与当代'],
+            image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=1200&q=80',
+            details: '空间不只是容器，更是感官仪式的延伸。该研究通过解构宜兴紫砂壶的泥料特性与武夷岩茶的焙火山场，推演出一套兼具东方禅意与人体工学的茶席动线系统，使品茶过程成为一场沉浸式的微型建筑体验。'
+        },
+        {
+            id: 3,
+            title: '大地之痕：混合媒介艺术装置与重构',
+            category: 'art',
+            summary: '运用天然矿物颜料、锈蚀金属、麻织物与浮雕肌理，探索物质时间性与空间记忆的视觉表达。',
+            tags: ['混合媒介', '自然肌理', '装置艺术'],
+            image: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=1200&q=80',
+            details: '这是一组关于时间侵蚀与物质重生的艺术实验。通过采集自然界的矿物土、铁锈与植物纤维，将其层层叠加于粗粝的亚麻布基底之上，呈现出历经风化却依然内敛的宏大空间张力。'
+        },
+        {
+            id: 4,
+            title: '形状文法与计算化空间生成',
+            category: 'computation',
+            summary: '基于 George Stiny 形状文法（Shape Grammars）理论，探索参数化规则在居住模块演化中的应用。',
+            tags: ['计算化设计', '形状文法', '算法逻辑'],
+            image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+            details: '研究将传统建筑平面的空间句法转化为可计算的几何规则（Shape Rules），通过程序化迭代生成兼具空间效率与流动性的多维居住形态，为现代建筑及室内模块化设计提供全新的理性支撑。'
+        }
+    ]
+}" 
+:class="darkMode ? 'bg-stone-950 text-stone-100' : 'bg-[#FAF8F5] text-stone-800'" 
+class="transition-colors duration-500 min-h-screen selection:bg-stone-400 selection:text-white">
+
+    <!-- 顶部导航栏 -->
+    <header class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md border-b transition-colors duration-500"
+            :class="darkMode ? 'bg-stone-950/80 border-stone-800' : 'bg-[#FAF8F5]/80 border-stone-200'">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="font-serif text-xl tracking-widest font-medium">ZINING ZHU</a>
+            
+            <nav class="hidden md:flex items-center space-x-10 text-sm tracking-wide">
+                <a href="#works" class="hover:opacity-60 transition-opacity">作品 / WORKS</a>
+                <a href="#about" class="hover:opacity-60 transition-opacity">关于 / ABOUT</a>
+                <a href="#contact" class="hover:opacity-60 transition-opacity">联系 / CONTACT</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <!-- 暗黑模式切换按钮 -->
+                <button @click="darkMode = !darkMode" 
+                        class="p-2.5 rounded-full border transition-colors"
+                        :class="darkMode ? 'border-stone-800 hover:bg-stone-900' : 'border-stone-300 hover:bg-stone-200'"
+                        aria-label="切换色彩模式">
+                    <svg x-show="!darkMode" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    <svg x-show="darkMode" x-cloak class="w-4 h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首页 Banner 区域 -->
+    <section class="pt-40 pb-20 px-6 max-w-7xl mx-auto">
+        <div class="max-w-3xl">
+            <p class="text-sm tracking-widest font-mono uppercase mb-4 opacity-60">Interior Designer & Spatial Researcher</p>
+            <h1 class="font-serif text-4xl md:text-6xl font-light leading-tight mb-8">
+                在秩序与偶然之间，探寻空间理性的诗意重构。
+            </h1>
+            <p class="text-lg opacity-80 leading-relaxed font-light">
+                我是 Zining Zhu，一名专注于空间逻辑、环境心理学与计算化设计的室内设计师与研究员。致力于将严谨的学术洞察转化为克制、温润且富有人文关怀的居住与艺术体验。
+            </p>
+        </div>
+    </section>
+
+    <!-- 作品过滤与展示区 -->
+    <section id="works" class="py-16 px-6 max-w-7xl mx-auto border-t" :class="darkMode ? 'border-stone-900' : 'border-stone-200'">
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6">
+            <h2 class="font-serif text-2xl tracking-wide">精选项目 / SELECTED WORKS</h2>
+            
+            <!-- 分类按钮 -->
+            <div class="flex flex-wrap gap-2 text-sm">
+                <button @click="activeFilter = 'all'" 
+                        :class="activeFilter === 'all' ? (darkMode ? 'bg-stone-100 text-stone-950' : 'bg-stone-900 text-white') : (darkMode ? 'hover:bg-stone-900 text-stone-400' : 'hover:bg-stone-200 text-stone-600')"
+                        class="px-4 py-2 rounded-full transition-all">全部</button>
+                <button @click="activeFilter = 'interior'" 
+                        :class="activeFilter === 'interior' ? (darkMode ? 'bg-stone-100 text-stone-950' : 'bg-stone-900 text-white') : (darkMode ? 'hover:bg-stone-900 text-stone-400' : 'hover:bg-stone-200 text-stone-600')"
+                        class="px-4 py-2 rounded-full transition-all">室内设计</button>
+                <button @click="activeFilter = 'research'" 
+                        :class="activeFilter === 'research' ? (darkMode ? 'bg-stone-100 text-stone-950' : 'bg-stone-900 text-white') : (darkMode ? 'hover:bg-stone-900 text-stone-400' : 'hover:bg-stone-200 text-stone-600')"
+                        class="px-4 py-2 rounded-full transition-all">空间研究</button>
+                <button @click="activeFilter = 'art'" 
+                        :class="activeFilter === 'art' ? (darkMode ? 'bg-stone-100 text-stone-950' : 'bg-stone-900 text-white') : (darkMode ? 'hover:bg-stone-900 text-stone-400' : 'hover:bg-stone-200 text-stone-600')"
+                        class="px-4 py-2 rounded-full transition-all">混合媒介艺术</button>
+                <button @click="activeFilter = 'computation'" 
+                        :class="activeFilter === 'computation' ? (darkMode ? 'bg-stone-100 text-stone-950' : 'bg-stone-900 text-white') : (darkMode ? 'hover:bg-stone-900 text-stone-400' : 'hover:bg-stone-200 text-stone-600')"
+                        class="px-4 py-2 rounded-full transition-all">计算化设计</button>
+            </div>
+        </div>
+
+        <!-- 项目卡片网格 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <template x-for="project in projects.filter(p => activeFilter === 'all' || p.category === activeFilter)" :key="project.id">
+                <div @click="selectedProject = project" 
+                     class="group cursor-pointer flex flex-col">
+                    <div class="overflow-hidden aspect-[16/10] mb-4 rounded-sm relative">
+                        <img :src="project.image" :alt="project.title" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="bg-white/90 text-stone-950 text-xs px-4 py-2 tracking-widest uppercase font-medium">查看详情</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2 mb-2">
+                        <template x-for="tag in project.tags">
+                            <span class="text-[11px] tracking-wider uppercase opacity-60 px-2 py-0.5 rounded border"
+                                  :class="darkMode ? 'border-stone-800' : 'border-stone-300'" x-text="tag"></span>
+                        </template>
+                    </div>
+                    <h3 class="font-serif text-xl font-normal group-hover:opacity-75 transition-opacity" x-text="project.title"></h3>
+                    <p class="text-sm opacity-60 mt-1 line-clamp-2" x-text="project.summary"></p>
+                </div>
+            </template>
+        </div>
+    </section>
+
+    <!-- 关于与设计哲学 -->
+    <section id="about" class="py-24 px-6 max-w-7xl mx-auto border-t" :class="darkMode ? 'border-stone-900' : 'border-stone-200'">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-5">
+                <h2 class="font-serif text-3xl font-light mb-6">设计哲学与学术背景</h2>
+                <p class="text-sm tracking-widest font-mono uppercase opacity-60 mb-4">Spatial Logic & Environmental Psychology</p>
+            </div>
+            <div class="lg:col-span-7 space-y-6 opacity-80 leading-relaxed font-light">
+                <p>
+                    我的设计实践根植于对人与空间关系的深度解构。本科求学于科罗拉多州立大学（CSU），奠定了坚实的设计叙事与美学基础；随后的建筑学深造与空间研究，让我持续死磕空间逻辑、光环境及环境心理学的底层规律。
+                </p>
+                <p>
+                    我相信，最理想的设计是在秩序与偶然之间找到完美的平衡点——让理性严谨的逻辑构包裹感性柔和的居住体验。
+                </p>
+                <div class="grid grid-cols-2 gap-6 pt-6 border-t" :class="darkMode ? 'border-stone-800' : 'border-stone-300'">
+                    <div>
+                        <h4 class="font-serif font-medium mb-3">荣誉与奖项</h4>
+                        <ul class="text-sm space-y-2 opacity-70">
+                            <li>2025 新锐室内建筑师提名</li>
+                            <li>2024 Architizer A+ 奖项入围</li>
+                            <li>2023 国际空间算法研究展参展</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-serif font-medium mb-3">核心专长</h4>
+                        <ul class="text-sm space-y-2 opacity-70">
+                            <li>高端住宅与商业空间室内设计</li>
+                            <li>环境心理学与微气候优化</li>
+                            <li>计算化参数化模型研究</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部与联系方式 -->
+    <footer id="contact" class="py-24 px-6 border-t" :class="darkMode ? 'border-stone-900 bg-stone-900/20' : 'border-stone-200 bg-stone-100/40'">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-12">
+            <div>
+                <p class="text-xs tracking-widest font-mono uppercase opacity-60 mb-2">Get in touch</p>
+                <h2 class="font-serif text-3xl md:text-4xl font-light mb-6">开启新的空间对话。</h2>
+                <p class="text-sm opacity-70 max-w-md">无论是关于室内设计委托、学术研究合作，或观念艺术探讨，随时欢迎通过电邮或社交媒体与我们联系。</p>
+            </div>
+            <div class="space-y-3 text-sm font-mono">
+                <p class="text-xs tracking-widest uppercase opacity-40 mb-2">Social & Networks</p>
+                <p><a href="mailto:contact@kairos-studio.arch" class="inline-block text-lg border-b pb-1 font-serif italic hover:opacity-75 transition-opacity" :class="darkMode ? 'border-stone-700' : 'border-stone-400'">contact@kairos-studio.arch</a></p>
+                <p class="opacity-70 pt-2">INSTAGRAM // @KAIROS.SPATIAL</p>
+                <p class="opacity-70">LINKEDIN // KAIROS STUDIO</p>
+                <p class="opacity-70">SUBSTACK // SPATIAL NOTES</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-20 pt-8 border-t flex flex-col md:flex-row justify-between items-center text-xs opacity-40" :class="darkMode ? 'border-stone-800' : 'border-stone-300'">
+            <p>&copy; 2026 ZINING ZHU. ALL RIGHTS RESERVED.</p>
+            <p class="mt-4 md:mt-0 font-mono">Editorial Portfolio v2.6</p>
+        </div>
+    </footer>
+
+    <!-- 项目详情弹窗 (Modal) -->
+    <div x-show="selectedProject" x-cloak 
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/60 backdrop-blur-sm"
+         @click.self="selectedProject = null">
+        <div class="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg shadow-2xl p-6 md:p-10 transition-all"
+             :class="darkMode ? 'bg-stone-900 text-stone-100 border border-stone-800' : 'bg-white text-stone-900'">
+            
+            <!-- 关闭按钮 -->
+            <button @click="selectedProject = null" 
+                    class="absolute top-6 right-6 p-2 rounded-full hover:opacity-75 transition-opacity">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            <template x-if="selectedProject">
+                <div>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <template x-for="tag in selectedProject.tags">
+                            <span class="text-[11px] tracking-wider uppercase opacity-60 px-2.5 py-0.5 rounded border"
+                                  :class="darkMode ? 'border-stone-700' : 'border-stone-300'" x-text="tag"></span>
+                        </template>
+                    </div>
+                    <h2 class="font-serif text-2xl md:text-3xl font-normal mb-6" x-text="selectedProject.title"></h2>
+                    
+                    <div class="aspect-[16/9] overflow-hidden rounded mb-8">
+                        <img :src="selectedProject.image" :alt="selectedProject.title" class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="space-y-4 text-sm md:text-base opacity-80 leading-relaxed font-light">
+                        <h4 class="font-serif font-medium text-lg opacity-100">项目深度解析</h4>
+                        <p x-text="selectedProject.details"></p>
+                    </div>
+
+                    <div class="mt-10 pt-6 border-t flex justify-end" :class="darkMode ? 'border-stone-800' : 'border-stone-200'">
+                        <button @click="selectedProject = null" 
+                                class="px-6 py-2.5 text-sm tracking-widest uppercase transition-colors rounded border"
+                                :class="darkMode ? 'border-stone-700 hover:bg-stone-800' : 'border-stone-300 hover:bg-stone-100'">
+                            关闭窗口
+                        </button>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+
+</body>
+</html>
