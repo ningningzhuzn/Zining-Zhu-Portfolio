@@ -8,11 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Alpine.js CDN -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- Google Fonts: 衬线与现代无衬线结合 -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Google Fonts: 引入更圆润、更现代简单的 Poppins 字体搭配 Noto Sans SC -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Plus Jakarta Sans', 'Noto Serif SC', sans-serif;
+            font-family: 'Poppins', 'Noto Sans SC', sans-serif;
             background-color: #FFFFFF;
             color: #111111;
         }
@@ -62,25 +62,25 @@
     ]
 }">
 
-    <!-- 顶部极简导航栏：左侧三横线菜单，中间品牌名，右侧分类/状态 -->
+    <!-- 顶部极简导航栏：左侧三横线菜单，中间品牌名 -->
     <header class="fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-sm border-b border-stone-100">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-8 h-24 flex items-center justify-between">
             
             <!-- 左侧：三横线 Menu 按钮 -->
-            <button @click="menuOpen = true" class="flex items-center space-x-2 group focus:outline-none" aria-label="Open Menu">
+            <button @click="menuOpen = true" class="flex items-center space-x-2.5 group focus:outline-none" aria-label="Open Menu">
                 <div class="space-y-1.5 w-6">
-                    <span class="block h-0.5 w-full bg-stone-900 group-hover:bg-stone-500 transition-colors"></span>
-                    <span class="block h-0.5 w-full bg-stone-900 group-hover:bg-stone-500 transition-colors"></span>
-                    <span class="block h-0.5 w-full bg-stone-900 group-hover:bg-stone-500 transition-colors"></span>
+                    <span class="block h-0.5 w-full bg-stone-900 group-hover:bg-stone-400 transition-colors"></span>
+                    <span class="block h-0.5 w-full bg-stone-900 group-hover:bg-stone-400 transition-colors"></span>
+                    <span class="block h-0.5 w-full bg-stone-900 group-hover:bg-stone-400 transition-colors"></span>
                 </div>
-                <span class="text-xs tracking-widest uppercase font-mono hidden md:inline-block pl-1">Menu</span>
+                <span class="text-xs tracking-[0.2em] uppercase font-medium hidden md:inline-block pl-1">Menu</span>
             </button>
 
             <!-- 中间：名称 / 标题 -->
-            <a href="#" class="font-serif text-sm md:text-base tracking-[0.2em] font-normal">ZINING ZHU</a>
+            <a href="#" class="text-sm md:text-base tracking-[0.3em] font-medium uppercase">Zining Zhu</a>
 
             <!-- 右侧：当前状态说明 -->
-            <div class="text-xs tracking-widest font-mono uppercase text-stone-500">
+            <div class="text-xs tracking-[0.2em] uppercase text-stone-400 font-normal">
                 Selected Works
             </div>
         </div>
@@ -88,11 +88,11 @@
 
     <!-- 全屏导航菜单 (抽屉式弹出) -->
     <div x-show="menuOpen" x-cloak 
-         class="fixed inset-0 z-50 bg-white flex flex-col justify-between p-8 md:p-16 transition-all duration-300">
+         class="fixed inset-0 z-50 bg-white flex flex-col justify-between p-8 md:p-20 transition-all duration-300">
         
         <!-- 菜单顶部：关闭按钮 -->
         <div class="flex justify-between items-center max-w-7xl w-full mx-auto">
-            <span class="font-serif text-xs tracking-widest uppercase text-stone-400">Navigation</span>
+            <span class="text-xs tracking-[0.2em] uppercase text-stone-400">Navigation</span>
             <button @click="menuOpen = false" class="p-2 text-stone-900 hover:opacity-60 transition-opacity">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
@@ -101,40 +101,40 @@
         <!-- 菜单中间：四大导航链接 -->
         <nav class="max-w-7xl w-full mx-auto space-y-6 my-auto py-10">
             <div>
-                <a href="#" @click="menuOpen = false" class="font-serif text-4xl md:text-6xl font-light hover:italic transition-all block">Home</a>
+                <a href="#" @click="menuOpen = false" class="text-4xl md:text-6xl font-light hover:text-stone-400 transition-colors block">Home</a>
             </div>
             <div>
-                <a href="#projects-section" @click="menuOpen = false" class="font-serif text-4xl md:text-6xl font-light hover:italic transition-all block">Projects</a>
+                <a href="#projects-section" @click="menuOpen = false" class="text-4xl md:text-6xl font-light hover:text-stone-400 transition-colors block">Projects</a>
             </div>
             <div>
-                <a href="#about-section" @click="menuOpen = false" class="font-serif text-4xl md:text-6xl font-light hover:italic transition-all block">About</a>
+                <a href="#about-section" @click="menuOpen = false" class="text-4xl md:text-6xl font-light hover:text-stone-400 transition-colors block">About</a>
             </div>
             <div>
-                <a href="#contact-section" @click="menuOpen = false" class="font-serif text-4xl md:text-6xl font-light hover:italic transition-all block">Contact</a>
+                <a href="#contact-section" @click="menuOpen = false" class="text-4xl md:text-6xl font-light hover:text-stone-400 transition-colors block">Contact</a>
             </div>
         </nav>
 
-        <!-- 菜单底部：简短版权或社交 -->
-        <div class="max-w-7xl w-full mx-auto flex justify-between items-center text-xs font-mono text-stone-400 border-t border-stone-100 pt-6">
-            <span>ZINING ZHU STUDIO</span>
-            <span>ATLANTA / GLOBAL</span>
+        <!-- 菜单底部 -->
+        <div class="max-w-7xl w-full mx-auto flex justify-between items-center text-xs tracking-[0.15em] uppercase text-stone-400 border-t border-stone-100 pt-8">
+            <span>Zining Zhu Studio</span>
+            <span>Atlanta / Global</span>
         </div>
     </div>
 
-    <!-- 首页项目瀑布流/网格区 (纯白底色 + 项目图 + 两行小字) -->
-    <main id="projects-section" class="pt-32 pb-24 px-6 md:px-12 max-w-[1600px] mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+    <!-- 首页项目网格区：严格正方形 (1:1)、超大留白间距、居中对齐文字 -->
+    <main id="projects-section" class="pt-40 pb-32 px-8 md:px-16 max-w-[1500px] mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-24">
             <template x-for="project in projects" :key="project.id">
-                <div @click="selectedProject = project" class="group cursor-pointer flex flex-col">
-                    <!-- 项目图片 (保持高级感比例与悬停微放大) -->
-                    <div class="overflow-hidden bg-stone-100 aspect-[4/3] mb-4">
+                <div @click="selectedProject = project" class="group cursor-pointer flex flex-col items-center">
+                    <!-- 正方形图片容器 (aspect-square)，带有细腻的背景和悬停微扩 -->
+                    <div class="w-full aspect-square overflow-hidden bg-stone-50 mb-6 rounded-[2px]">
                         <img :src="project.image" :alt="project.title" 
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
                     </div>
-                    <!-- 两行小字：第1行 项目名称，第2行 设计时间 -->
-                    <div class="space-y-1">
-                        <h3 class="font-serif text-base font-normal tracking-wide group-hover:opacity-60 transition-opacity" x-text="project.title"></h3>
-                        <p class="text-xs font-mono text-stone-400 tracking-wider" x-text="project.year"></p>
+                    <!-- 两行小字：居中对齐 (text-center)，现代圆润字体 -->
+                    <div class="text-center space-y-1.5">
+                        <h3 class="text-sm font-medium tracking-wide group-hover:opacity-60 transition-opacity" x-text="project.title"></h3>
+                        <p class="text-xs text-stone-400 tracking-[0.1em]" x-text="project.year"></p>
                     </div>
                 </div>
             </template>
@@ -142,13 +142,13 @@
     </main>
 
     <!-- 关于板块 (About) -->
-    <section id="about-section" class="py-24 px-6 md:px-12 max-w-5xl mx-auto border-t border-stone-100">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-            <div class="md:col-span-4">
-                <h2 class="font-serif text-2xl font-light">About</h2>
-                <p class="text-xs tracking-widest font-mono uppercase text-stone-400 mt-2">Spatial Logic & Design</p>
+    <section id="about-section" class="py-32 px-8 md:px-20 max-w-4xl mx-auto border-t border-stone-100">
+        <div class="space-y-8">
+            <div>
+                <h2 class="text-2xl font-normal tracking-wide">About</h2>
+                <p class="text-xs tracking-[0.2em] uppercase text-stone-400 mt-1">Spatial Logic & Design</p>
             </div>
-            <div class="md:col-span-8 space-y-6 text-stone-700 font-light leading-relaxed">
+            <div class="space-y-6 text-stone-700 font-light leading-relaxed text-sm md:text-base">
                 <p>
                     我是 Zining Zhu，一名室内设计师与空间研究员。本科求学于科罗拉多州立大学（CSU），目前于佐治亚理工学院（Georgia Tech）深造建筑学。
                 </p>
@@ -160,19 +160,19 @@
     </section>
 
     <!-- 联系方式板块 (Contact) -->
-    <footer id="contact-section" class="py-24 px-6 md:px-12 max-w-5xl mx-auto border-t border-stone-100">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-            <div class="md:col-span-4">
-                <h2 class="font-serif text-2xl font-light">Contact</h2>
-                <p class="text-xs tracking-widest font-mono uppercase text-stone-400 mt-2">Get in Touch</p>
+    <footer id="contact-section" class="py-32 px-8 md:px-20 max-w-4xl mx-auto border-t border-stone-100">
+        <div class="space-y-8">
+            <div>
+                <h2 class="text-2xl font-normal tracking-wide">Contact</h2>
+                <p class="text-xs tracking-[0.2em] uppercase text-stone-400 mt-1">Get in Touch</p>
             </div>
-            <div class="md:col-span-8 space-y-4 font-mono text-sm">
-                <p><a href="mailto:contact@kairos-studio.arch" class="border-b border-stone-300 pb-1 font-serif text-lg italic hover:border-stone-900 transition-colors">contact@kairos-studio.arch</a></p>
-                <p class="text-stone-400 pt-2">INSTAGRAM // @ZINING.SPATIAL</p>
-                <p class="text-stone-400">LINKEDIN // ZINING ZHU</p>
+            <div class="space-y-4 text-sm">
+                <p><a href="mailto:contact@kairos-studio.arch" class="border-b border-stone-300 pb-1 text-lg font-normal hover:border-stone-900 transition-colors">contact@kairos-studio.arch</a></p>
+                <p class="text-stone-400 tracking-wider text-xs pt-2">INSTAGRAM // @ZINING.SPATIAL</p>
+                <p class="text-stone-400 tracking-wider text-xs">LINKEDIN // ZINING ZHU</p>
             </div>
         </div>
-        <div class="max-w-5xl mx-auto mt-20 pt-8 border-t border-stone-100 flex justify-between items-center text-xs font-mono text-stone-400">
+        <div class="max-w-4xl mx-auto mt-24 pt-8 border-t border-stone-100 flex justify-between items-center text-xs tracking-[0.15em] uppercase text-stone-400">
             <p>&copy; 2026 ZINING ZHU.</p>
             <p>EDITORIAL PORTFOLIO</p>
         </div>
@@ -180,39 +180,40 @@
 
     <!-- 项目详情弹窗 (Modal) -->
     <div x-show="selectedProject" x-cloak 
-         class="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-12 bg-white/95 backdrop-blur-md overflow-y-auto"
+         class="fixed inset-0 z-50 flex items-center justify-center p-6 md:p-16 bg-white/95 backdrop-blur-md overflow-y-auto"
          @click.self="selectedProject = null">
         
-        <div class="relative w-full max-w-4xl bg-white p-6 md:p-12">
+        <div class="relative w-full max-w-3xl bg-white">
             <!-- 关闭按钮 -->
             <button @click="selectedProject = null" 
-                    class="fixed top-8 right-8 p-3 text-stone-900 hover:opacity-60 transition-opacity">
+                    class="fixed top-8 right-8 p-3 text-stone-900 hover:opacity-60 transition-opacity z-10">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
             <template x-if="selectedProject">
-                <div class="space-y-8">
+                <div class="space-y-8 py-6">
                     <div class="space-y-2">
-                        <div class="flex gap-2 text-xs font-mono text-stone-400">
+                        <div class="flex gap-2 text-xs text-stone-400 tracking-wider">
                             <span x-text="selectedProject.year"></span>
                             <span>/</span>
                             <span x-text="selectedProject.tags.join(' · ')"></span>
                         </div>
-                        <h2 class="font-serif text-3xl md:text-4xl font-light" x-text="selectedProject.title"></h2>
+                        <h2 class="text-2xl md:text-3xl font-normal tracking-wide" x-text="selectedProject.title"></h2>
                     </div>
 
-                    <div class="aspect-[16/9] overflow-hidden bg-stone-100">
+                    <!-- 弹窗内的项目图片也保持正方形 -->
+                    <div class="w-full aspect-square overflow-hidden bg-stone-50">
                         <img :src="selectedProject.image" :alt="selectedProject.title" class="w-full h-full object-cover">
                     </div>
 
-                    <div class="max-w-2xl space-y-4 text-stone-700 font-light leading-relaxed">
-                        <h4 class="font-serif font-medium text-lg text-stone-900">Project Overview</h4>
+                    <div class="space-y-4 text-stone-700 font-light leading-relaxed text-sm md:text-base">
+                        <h4 class="font-medium text-stone-900">Project Overview</h4>
                         <p x-text="selectedProject.details"></p>
                     </div>
 
                     <div class="pt-8 border-t border-stone-100 flex justify-start">
                         <button @click="selectedProject = null" 
-                                class="text-xs font-mono tracking-widest uppercase border-b border-stone-900 pb-1 hover:opacity-60 transition-opacity">
+                                class="text-xs tracking-[0.2em] uppercase border-b border-stone-900 pb-1 hover:opacity-60 transition-opacity">
                             ← Back to Works
                         </button>
                     </div>
